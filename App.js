@@ -1,19 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+import MyStack from './Route/stackNavigation';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
 
+const getFonts = () => Font.loadAsync({
+  'Nunito-Regular': require('./assets/fonts/Nunito-Regular.ttf'),
+  'Nunito-Bold': require('./assets/fonts/Nunito-Bold.ttf')
+});
+
+const store = ConfigureStore();
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  if (fontsLoaded) {
+    return (
+      <View style={styles.container}>
+        <Provider store = {store}>
+          <MyStack />
+        </Provider>
+      </View>
+
+    );
+  }
+  else {
+    return (
+      <AppLoading
+        startAsync={getFonts}
+        onFinish={() => setFontsLoaded(true)}
+      />
+    );
+  }
+
+}
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    flex: 1
+  }
+})

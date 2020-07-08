@@ -1,0 +1,1 @@
+export const ADD_GROUP_MESSAGE = 'ADD_GROUP_MESSAGE';
