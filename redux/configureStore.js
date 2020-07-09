@@ -1,4 +1,4 @@
-import { messages } from './Reducers/messages';
+import { messages } from './Reducers/ChatReducer';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';

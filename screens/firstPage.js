@@ -22,7 +22,7 @@ class FirstPage extends Component {
                 />
                 <Button
                 title="Next"
-                onPress = {()=>navigate('ChatPage',{username:this.state.username})}
+                onPress = {()=>navigate('ChatProfile',{username:this.state.username})}
                 />
             </View>
         );
